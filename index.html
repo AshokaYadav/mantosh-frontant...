@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GET API Demo</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f1f5f9; padding: 30px; }
+    h1 { text-align: center; color: #065f46; }
+    button { padding: 10px 16px; background: #10b981; color: #fff; border: none; border-radius: 6px; cursor: pointer; display: block; margin: 20px auto; }
+    ul { list-style: none; padding: 0; max-width: 400px; margin: auto; }
+    li { background: #ecfdf5; padding: 12px; border-radius: 6px; border: 1px solid #d1fae5; margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+
+  <h1>Users List</h1>
+  <button id="loadBtn">Load Users</button>
+
+  <ul id="userList"></ul>
+  
+  <script>
+    const btn = document.getElementById('loadBtn');
+    const list = document.getElementById('userList');
+
+    btn.addEventListener('click', async () => {
+      list.innerHTML = "<li>Loading...</li>";
+      try {
+        const res = await fetch('https://r2m0nvcz-4000.inc1.devtunnels.ms/users');
+        const users = await res.json(); // <-- yaha change
+        console.log(users);
+
+        list.innerHTML = "";
+        users.forEach(user => {
+          const li = document.createElement('li');
+          li.textContent = `ID: ${user.id} | ${user.name} (${user.age} years)`;
+          list.appendChild(li);
+        });
+      } catch (err) {
+        console.error(err);
+        list.innerHTML = "<li>Error loading data</li>";
+      }
+    });
+  </script>
+
+</body>
+</html>
