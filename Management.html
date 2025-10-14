@@ -1,4 +1,4 @@
-   <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -139,7 +139,7 @@
         <tbody></tbody>
     </table>
 </body>
-    
+
 <script>
     const openForm = document.getElementById('openForm');
     const errorDiv = document.getElementById('errorDiv');
@@ -147,81 +147,82 @@
     const closeBtn = document.getElementById('closeBtn');
     const UserForm = document.getElementById('FormList');
     const tableUser = document.querySelector('#tableUser tbody');
-    const API_URL = "https://mantoshbackend.onrender.com/users2";~
+    const API_URL = "https://mantoshbackend.onrender.com/users1";
 
 
-    openForm.addEventListener('click', ()=>{
+    openForm.addEventListener('click', () => {
         container.style.display = "flex";
     })
-    closeBtn.addEventListener('click', ()=>{
+    closeBtn.addEventListener('click', () => {
         container.style.display = "none";
     })
-   // user (get)
-   function fetchUser(){
-             
-       axios.get(API_URL)
-       .then(response =>{
-            tableUser.innerHTML = "";
-            errorDiv.style.display = "none";
 
-            response.data.forEach(element => {
-                const row = document.createElement('tr');
+    // user (Get)
 
-                row.innerHTML = `<td>${element.id}</td>
-                <td>${element.name}</td>
-                  <td>${element.Age}</td>`;
+    function fetchUsers() {
 
-              tableUser.appendChild(row);
-                
-            });
-       })
-       .catch(error =>{
-        console.log(error);
+        axios.get(API_URL)
+            .then(response => {
+                tableUser.innerHTML = "";
+                errorDiv.style.display = "none";
 
-        errorDiv.innerText = "please check your coonection or try again";
-        errorDiv.style.display = "block";
+                response.data.forEach(element => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `<td>${element.id}</td>
+            <td>${element.name}</td>
+            <td>${element.age}</td>`;
 
-        setTimeout(()=>{
-            errorDiv.style.display = "none"
-        },3000);
-       })
-   }
+                    tableUser.appendChild(row);
+                });
+            })
+            .catch(error => {
+                console.log(error);
+                errorDiv.innerText = "your conection faild try again";
+                errorDiv.style.display = "block";
 
-   fetchUser();
+                setTimeout(() => {
+                    errorDiv.style.display = "none"
+                }, 3000);
+            }
 
-// add uaer (post)
+            )
 
-UserForm.addEventListener('sub,it', function(e){
-    e.preventDefault();
+    }
+    fetchUsers();
 
-    const saveUser = document.getElementById('saveUser');
-    saveUser.innerText = "saving...";
-    saveUser.Disabled = "true";
+    UserForm.addEventListener('submit', function (e) {
+        e.preventDefault();
 
-    const userName = document.getElementById('name').value;
-    const userAge = document.getElementById('age').value;
+        const saveUser = document.getElementById('saveUser');
+        saveUser.innerText = "saving....";
+        saveUser.Disabled = "true";
 
-    axios.post(API_URL, {name:userName, age:userAge})
-    .then(response =>{
-        console.log(response.data);
-        UserForm.reset();
-        fetchUser();
-        errorDiv.style.display = "none";
-    })
-    .catch(error =>{
-        console.log(error);
-        errorDiv.innerText = "field to save user please try again";
-        errorDiv.style.display = "block";
 
-        setTimeout(() => {
-              errorDiv.style.display = "none"
-        },50000);
-    })
-     .finally(() => {
+        const userName = document.getElementById('name').value;
+        const userAge = document.getElementById('age').value;
+
+        axios.post(API_URL, { name: userName, age: userAge })
+            .then(response => {
+                console.log(response.data);
+                UserForm.reset();
+                fetchUsers();
+
+            })
+            .catch(error => {
+                console.log(error);
+                errorDiv.innerText = "check your connection please try again";
+                errorDiv.style.display = "block";
+
+                setTimeout(() => {
+                    errorDiv.style.display = "none";
+                }, 6000);
+            })
+            .finally(() => {
                 saveUser.innerText = "Save user";
-                saveUser.disabled = false;
-            });
-})
+                saveUser.Disabled = "false";
+            })
+    })
+
 
 </script>
 
