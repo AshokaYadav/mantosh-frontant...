@@ -4,7 +4,7 @@
     const closeBtn = document.getElementById('closeBtn');
     const UserForm = document.getElementById('FormList');
     const tableUser = document.querySelector('#tableUser tbody');
-    const API_URL = "https://mantoshbackend.onrender.com/users1";
+    const API_URL = "https://mantoshbackend.onrender.com/users";
 
 
     openForm.addEventListener('click', () => {
