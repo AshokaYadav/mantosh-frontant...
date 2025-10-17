@@ -5,113 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>user management</title>
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            margin: 21px;
-        }
-
-        #openForm {
-            padding: 10px 14px;
-            border-radius: 5px;
-            border: none;
-            background-color: chocolate;
-            color: white;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        #container {
-            position: relative;
-            margin-top: 20px;
-            gap: 10px;
-            flex-direction: column;
-            border: 1px solid red;
-            height: 270px;
-            justify-content: center;
-            align-items: center;
-        }
-
-        #closeBtn {
-            position: absolute;
-            top: 12px;
-            right: 460px;
-            /* fixed position */
-            font-size: 22px;
-            font-weight: bold;
-            color: rgb(58, 58, 58);
-            cursor: pointer;
-
-        }
-
-        #FormList {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            border-radius: 5px;
-            background-color: #f3eded;
-            width: 400px;
-            height: 230px;
-            margin: auto;
-            margin-top: 15px;
-        }
-
-        #FormList label,
-        input {
-            margin-top: 5px;
-            margin-left: 20px;
-        }
-
-        #FormList input {
-            padding: 7px;
-        }
-
-        #saveUser {
-            background-color: dodgerblue;
-            padding: 10px;
-            border-radius: 5px;
-            border: none;
-            color: white;
-            cursor: pointer;
-            margin-top: 11px;
-            margin-left: 20px;
-            font-size: 17px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th,
-        td {
-            border: 1px solid #ddd;
-            padding: 8px 12px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f3f4f6;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f9fafb;
-        }
-
-        #errorDiv {
-            display: none;
-            background-color: #ffcccc;
-            color: #900;
-            padding: 12px;
-            border-radius: 5px;
-            margin-top: 15px;
-            font-weight: bold;
-            width: fit-content;
-        }
-    </style>
 </head>
 
 <body>
@@ -216,12 +112,12 @@
                 setTimeout(() => {
                     errorDiv.style.display = "none";
                 }, 6000);
-            })
+              })
             .finally(() => {
                 saveUser.innerText = "Save user";
                 saveUser.Disabled = "false";
             })
-    })
+        })
 
 
 </script>
