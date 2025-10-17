@@ -21,7 +21,7 @@
         axios.get(API_URL)
             .then(response => {
                 tableUser.innerHTML = "";
-                errorDiv.style.display = "none";
+                errorDiv.style.display = "none";    
 
                 response.data.forEach(element => {
                     const row = document.createElement('tr');
